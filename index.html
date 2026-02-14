@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Personalized Valentine Messages 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe6f2 0%, #ffd1dc 50%, #ffc0cb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .hearts-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; }
+        .heart {
+            position: absolute;
+            font-size: 1.2rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: float 12s linear infinite;
+            user-select: none;
+        }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px rgba(219, 112, 147, 0.25), 0 10px 20px rgba(0,0,0,0.08);
+            padding: 3rem 2.2rem;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 35px 60px rgba(219, 112, 147, 0.35); }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #c71585;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        h1 span { font-size: 3.5rem; }
+        .sub { color: #db7093; margin-bottom: 1.5rem; font-style: italic; font-size: 1.25rem; opacity: 0.9; }
+        .name-section { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+        input[type="text"] {
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            border: 3px solid #ff69b4;
+            border-radius: 2rem;
+            width: 80%;
+            max-width: 300px;
+            background: #fff0f5;
+            color: #a52a2a;
+        }
+        input[type="text"]:focus { outline: none; border-color: #c71585; box-shadow: 0 0 0 3px rgba(199, 21, 133, 0.2); }
+        .message-box {
+            background: linear-gradient(145deg, #fff0f5, #fff);
+            border-radius: 2.5rem;
+            padding: 2.2rem 1.8rem;
+            margin: 1.5rem 0;
+            font-size: 1.6rem;
+            color: #a52a2a;
+            font-weight: 600;
+            box-shadow: inset 0 6px 12px rgba(0,0,0,0.04), 0 6px 0 #ffb6c1;
+            border: 3px solid #ff69b4;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-word;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.4em;
+            background: #c71585;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+            margin-left: 2px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+        button {
+            background: linear-gradient(90deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 1.1rem 2.5rem;
+            font-size: 1.4rem;
+            border-radius: 3rem;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #c71585, 0 6px 20px rgba(255, 20, 147, 0.4);
+            transition: all 0.2s ease;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            border: 3px solid #fff0f5;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #ff1493, #c71585);
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 15px 0 #c71585, 0 10px 25px rgba(255, 20, 147, 0.5);
+        }
+        button:active { transform: translateY(5px); box-shadow: 0 5px 0 #c71585; }
+        .footer { margin-top: 2.5rem; color: #db7093; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0.9; }
+        .heart-bullet { animation: pulse 1.8s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+    </style>
+</head>
+<body>
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <div class="card">
+        <h1><span>💞</span> Personalized Valentine <span>💞</span></h1>
+        <div class="sub">Enter a name to make the messages extra special 💌</div>
+
+        <div class="name-section" id="nameSection">
+            <input type="text" id="nameInput" placeholder="Enter their name (e.g., My love)" aria-label="Enter name for personalization">
+            <button id="saveNameBtn">Save Name & Start</button>
+        </div>
+
+        <div class="message-box" id="messageDisplay">
+            💖 Your personalized message awaits...
+        </div>
+
+        <div class="buttons">
+            <button id="generateBtn" aria-label="Generate a new love message"><span>❤️</span> Generate Love <span>❤️</span></button>
+            <button id="shareBtn" aria-label="Share this message"><span>🔗</span> Share Love <span>💕</span></button>
+            <button id="changeNameBtn" style="display:none;">Change Name</button>
+        </div>
+
+        <div class="footer">
+            <span class="heart-bullet">💘</span> Made with love in Lusaka <span class="heart-bullet">💘</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const messages = [
+                "you make my heart skip a beat! 💓",
+                "I'm so sweet on you, it's unhealthy! 🍫",
+                "You're the peanut butter to my jelly. 🥜",
+                "If kisses were snowflakes, I'd send you a blizzard. ❄️💋",
+                "You're the reason I believe in love at first sight. 👀❤️",
+                "I love you more than pizza... and that's serious! 🍕",
+                "You're the candy to my heart. 🍬",
+                "Every love story is beautiful, but ours is my favorite. 📖💕",
+                "You're the missing piece I never knew I needed. 🧩",
+                "I'd pick you even in a lineup of a million faces. 🫵🌟",
+                "You've stolen a piece of my heart, and I don't want it back. 💔➡️❤️",
+                "Being with you feels like a permanent Valentine's Day. 🌹",
+                "You're the marshmallow to my hot chocolate. ☕",
+                "If I had a flower for every time I thought of you, I'd walk in an eternal garden. 🌸",
+                "You're the apple of my eye (and the cinnamon to my roll). 🍎🥐",
+                "You're my favorite notification in a world full of noise 💌",
+                "If loving you was a crime, I'd happily do life without parole ❤️",
+                "You turn my ordinary moments into the best love story ever told 📖💞",
+                "My heart has your name written in permanent marker 🖤➡️❤️",
+                "You're the kind of magic I didn't know existed until you smiled ✨",
+                "Every sunrise feels like a love letter addressed to us 🌅💕",
+                "You're the 'why' behind all my butterflies 🦋",
+                "I love you in every language, even the ones I haven't learned yet 🌍❤️",
+                "You're my comfort playlist on repeat 🎶💖",
+                "If I could bottle how you make me feel, it'd be the best perfume ever made 🫙✨",
+                "You're proof that the best things in life come with zero warning signs 😏❤️",
+                "My favorite place is anywhere you're holding my hand 🤝💞",
+                "You make falling in love feel like the easiest thing I've ever done 🪂",
+                "You're the plot twist that made my whole story better 📚💘",
+                "I didn't know hearts could glow until you walked into my life 🌟",
+                "You're my safe word, my wild side, and everything in between 🔥❤️",
+                "Loving you is my favorite bad habit (and I never want to quit) 😈💕",
+                "You're the reason 'forever' doesn't scare me anymore 🕊️",
+                "If kisses were stars, you'd have your own galaxy by now 🌌💋",
+                "You're still the first person I want to text good morning and good night every single day ☀️🌙"
+            ];
+
+            const messageDisplay = document.getElementById('messageDisplay');
+            const generateBtn = document.getElementById('generateBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const changeNameBtn = document.getElementById('changeNameBtn');
+            const nameSection = document.getElementById('nameSection');
+            const nameInput = document.getElementById('nameInput');
+            const saveNameBtn = document.getElementById('saveNameBtn');
+            const heartsContainer = document.getElementById('heartsContainer');
+
+            let currentMessage = "";
+            let userName = localStorage.getItem('valentineName') || "";
+
+            function getRandomMessage() {
+                const base = messages[Math.floor(Math.random() * messages.length)];
+                if (userName.trim()) {
+                    const prefixes = [
+                        `Hey ${userName}, `,
+                        `My dearest ${userName}, `,
+                        `Darling ${userName}, `,
+                        `To my love ${userName}, `,
+                        `${userName}, you `
+                    ];
+                    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                    return prefix + base.charAt(0).toLowerCase() + base.slice(1);
+                }
+                return base;
+            }
+
+            function typeWriter(text, element, speed = 40) {
+                element.innerHTML = '';
+                let i = 0;
+                const cursor = '<span class="typing-cursor">|</span>';
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML = text.substring(0, i + 1) + cursor;
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        element.innerHTML = text;
+                        createHeartBurst();
+                    }
+                }
+                type();
+            }
+
+            function displayNewMessage() {
+                messageDisplay.style.opacity = '0';
+                messageDisplay.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    messageDisplay.style.transform = 'scale(1)';
+                    messageDisplay.style.opacity = '1';
+                    currentMessage = getRandomMessage();
+                    typeWriter(currentMessage, messageDisplay);
+                }, 400);
+            }
+
+            function saveName() {
+                userName = nameInput.value.trim();
+                if (userName) {
+                    localStorage.setItem('valentineName', userName);
+                    nameSection.style.display = 'none';
+                    changeNameBtn.style.display = 'inline-flex';
+                    displayNewMessage(); // Show first personalized message
+                } else {
+                    alert("Please enter a name to make it personal 💕");
+                }
+            }
+
+            async function shareMessage() {
+                const shareData = {
+                    title: "Sweet Personalized Valentine Message 💖",
+                    text: `${currentMessage}\n\nSending you this little burst of love from Lusaka! 💕 Made with ❤️`,
+                    url: window.location.href
+                };
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    try { await navigator.share(shareData); } catch (err) {
+                        if (err.name !== 'AbortError') fallbackShare();
+                    }
+                } else {
+                    fallbackShare();
+                }
+            }
+
+            function fallbackShare() {
+                const fallbackText = `${currentMessage}\n\nSending you love! 💕 Check out more at: ${window.location.href}`;
+                navigator.clipboard.writeText(fallbackText)
+                    .then(() => alert("Message copied to clipboard! Paste it anywhere to share the love 💌"))
+                    .catch(() => alert("Couldn't copy automatically. Here's your message:\n\n" + fallbackText));
+            }
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = ['❤️', '💖', '💕', '💞', '💘'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (8 + Math.random() * 10) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heartsContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 15000);
+            }
+
+            function createHeartBurst() {
+                for (let i = 0; i < 8; i++) setTimeout(createHeart, i * 80);
+            }
+
+            // Init
+            setInterval(createHeart, 1800);
+            window.addEventListener('load', () => {
+                if (userName) {
+                    nameSection.style.display = 'none';
+                    changeNameBtn.style.display = 'inline-flex';
+                    currentMessage = getRandomMessage();
+                    typeWriter(currentMessage, messageDisplay, 50);
+                } else {
+                    nameSection.style.display = 'flex';
+                    changeNameBtn.style.display = 'none';
+                    messageDisplay.textContent = "Enter a name above to get started! 💕";
+                }
+                for (let i = 0; i < 12; i++) createHeart();
+            });
+
+            saveNameBtn.addEventListener('click', saveName);
+            generateBtn.addEventListener('click', displayNewMessage);
+            shareBtn.addEventListener('click', shareMessage);
+            changeNameBtn.addEventListener('click', () => {
+                nameSection.style.display = 'flex';
+                nameInput.value = userName;
+                changeNameBtn.style.display = 'none';
+            });
+        })();
+    </script>
+</body>
+</html>
