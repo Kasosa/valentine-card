@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Personalized Valentine Messages 💖</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -11,90 +11,170 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #ffe6f2 0%, #ffd1dc 50%, #ffc0cb 100%);
             min-height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for mobile */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            padding: clamp(0.5rem, 2vw, 1.5rem);
             overflow-x: hidden;
             position: relative;
         }
-        .hearts-bg { 
-            position: absolute; inset: 0; pointer-events: none; overflow: hidden; 
-        }
+        .hearts-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; }
         .heart {
             position: absolute;
-            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            font-size: 1.2rem;
             color: rgba(255, 105, 180, 0.6);
             animation: float 12s linear infinite;
             user-select: none;
         }
-        @keyframes float { 
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 
-            10% { opacity: 1; } 
-            90% { opacity: 1; } 
-            100% { transform: translateY(-30vh) rotate(360deg); opacity: 0; } 
-        }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
         .card {
             background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(10px); /* reduced for mobile perf */
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 1.8rem;
-            box-shadow: 0 15px 35px rgba(219, 112, 147, 0.2), 0 5px 15px rgba(0,0,0,0.05);
-            padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
-            width: 100%;
-            max-width: 480px;
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border-radius: clamp(1rem, 4vw, 2.5rem);
+            box-shadow: 0 25px 50px rgba(219, 112, 147, 0.25), 0 10px 20px rgba(0,0,0,0.08);
+            padding: 2rem 1.5rem;
+            padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.2rem);
+            max-width: 520px;
+            width: 95%;
+            width: min(95%, 520px);
             text-align: center;
-            border: 3px solid rgba(255, 255, 255, 0.85);
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 1rem auto;
         }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 25px 45px rgba(219, 112, 147, 0.3); }
+        @media (max-width: 768px) {
+            .card:hover { 
+                transform: translateY(-4px) rotate(0.5deg); 
+                box-shadow: 0 20px 40px rgba(219, 112, 147, 0.3); 
+            }
+            button:hover {
+                background: linear-gradient(90deg, #ff1493, #c71585);
+                transform: translateY(-2px) scale(1.02) rotate(-1deg);
+                box-shadow: 0 8px 0 #c71585, 0 6px 15px rgba(255, 20, 147, 0.4);
+            }
+            button:active { 
+                transform: translateY(2px) rotate(0.5deg) scale(0.98); 
+                box-shadow: 0 3px 0 #c71585; 
+            }
+            .heart {
+                font-size: 1rem;
+            }
+            .emoji-reaction {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (hover: none) and (pointer: coarse) {
+            .card:hover { transform: none; }
+            button:hover { transform: none; }
+            input[type="text"]:focus { 
+                transform: scale(1.01); 
+            }
+        }
+        
+        @media (max-width: 320px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            h1 span {
+                font-size: 1.8rem;
+            }
+            .message-box {
+                font-size: 1rem;
+                min-height: 80px;
+            }
+            button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 8vw, 2.8rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             color: #c71585;
             margin-bottom: 0.5rem;
+            margin-bottom: clamp(0.4rem, 2vw, 0.6rem);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
+            gap: clamp(0.3rem, 2vw, 0.8rem);
+            flex-wrap: wrap;
         }
-        h1 span { font-size: clamp(2.8rem, 10vw, 3.4rem); }
-        .sub { color: #db7093; margin-bottom: 1.2rem; font-style: italic; font-size: clamp(1rem, 4vw, 1.2rem); opacity: 0.9; }
-        .name-section { 
-            margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; align-items: center; 
+        h1 span { font-size: clamp(2.5rem, 7vw, 3.5rem); }
+        .sub { 
+            color: #db7093; 
+            margin-bottom: 1rem;
+            margin-bottom: clamp(0.8rem, 3vw, 1.5rem); 
+            font-style: italic; 
+            font-size: clamp(1rem, 3.5vw, 1.25rem); 
+            opacity: 0.9; 
+            line-height: 1.4;
         }
-        input[type="text"] {
-            padding: 0.7rem 1.2rem;
-            font-size: clamp(1rem, 4vw, 1.1rem);
+        .name-section { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+        .category-section { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
+        .category-label { color: #a52a2a; font-weight: 600; font-size: clamp(1rem, 3.2vw, 1.1rem); }
+        select {
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.2rem);
+            font-size: clamp(1rem, 3.5vw, 1.1rem);
             border: 3px solid #ff69b4;
-            border-radius: 2rem;
-            width: 100%;
+            border-radius: clamp(1rem, 3vw, 1.6rem);
+            width: clamp(70%, 85%, 320px);
             max-width: 320px;
             background: #fff0f5;
             color: #a52a2a;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
-        input[type="text"]:focus { outline: none; border-color: #c71585; box-shadow: 0 0 0 3px rgba(199,21,133,0.15); }
+        select:focus { outline: none; border-color: #c71585; box-shadow: 0 0 0 3px rgba(199, 21, 133, 0.2); }
+        input[type="text"] {
+            padding: 0.8rem 1.2rem;
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            border: 3px solid #ff69b4;
+            border-radius: 1.5rem;
+            border-radius: clamp(1rem, 3vw, 2rem);
+            width: 85%;
+            width: clamp(70%, 85%, 300px);
+            max-width: 280px;
+            background: #fff0f5;
+            color: #a52a2a;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        input[type="text"]:focus { outline: none; border-color: #c71585; box-shadow: 0 0 0 3px rgba(199, 21, 133, 0.2); transform: scale(1.02); }
         .message-box {
             background: linear-gradient(145deg, #fff0f5, #fff);
-            border-radius: 1.8rem;
-            padding: clamp(1.2rem, 5vw, 1.8rem) 1.2rem;
-            margin: 1.2rem 0;
-            font-size: clamp(1.3rem, 5vw, 1.5rem);
+            border-radius: 2rem;
+            border-radius: clamp(1.2rem, 4vw, 2.5rem);
+            padding: 1.5rem 1.2rem;
+            padding: clamp(1rem, 4vw, 2.2rem) clamp(0.8rem, 3vw, 1.8rem);
+            margin: 1rem 0;
+            margin: clamp(0.8rem, 3vw, 1.5rem) 0;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
             color: #a52a2a;
             font-weight: 600;
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.03), 0 4px 0 #ffb6c1;
+            box-shadow: inset 0 6px 12px rgba(0,0,0,0.04), 0 6px 0 #ffb6c1;
             border: 3px solid #ff69b4;
             min-height: 120px;
+            min-height: clamp(100px, 25vh, 160px);
             display: flex;
             align-items: center;
             justify-content: center;
             word-break: break-word;
             transition: all 0.4s ease;
+            position: relative;
+            line-height: 1.3;
         }
         .typing-cursor {
             display: inline-block;
             width: 2px;
-            height: 1.3em;
+            height: 1.4em;
             background: #c71585;
             vertical-align: middle;
             animation: blink 0.8s infinite;
@@ -102,42 +182,181 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .buttons { 
-            display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 1rem; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 0.8rem;
+            gap: clamp(0.5rem, 2vw, 1rem); 
+            justify-content: center; 
+            margin-top: 1rem;
+            margin-top: clamp(0.8rem, 3vw, 1.5rem); 
+        }
+        
+        @media (max-width: 480px) {
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            button {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
         }
         button {
             background: linear-gradient(90deg, #ff69b4, #ff1493);
             color: white;
             border: none;
-            padding: clamp(0.9rem, 4vw, 1rem) clamp(1.2rem, 5vw, 2rem);
-            font-size: clamp(1.1rem, 4.5vw, 1.3rem);
-            border-radius: 3rem;
+            padding: 0.9rem 1.8rem;
+            padding: clamp(0.8rem, 2.5vw, 1.1rem) clamp(1.5rem, 4vw, 2.5rem);
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            border-radius: 2rem;
+            border-radius: clamp(1.2rem, 3vw, 3rem);
             cursor: pointer;
-            box-shadow: 0 8px 0 #c71585, 0 5px 15px rgba(255,20,147,0.3);
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 8px 0 #c71585, 0 4px 15px rgba(255, 20, 147, 0.4);
             transition: all 0.2s ease;
             font-weight: 600;
-            min-width: 140px;
-            touch-action: manipulation;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            gap: clamp(0.3rem, 1.5vw, 0.6rem);
+            border: 3px solid #fff0f5;
+            min-height: 44px; /* iOS touch target minimum */
+            white-space: nowrap;
         }
         button:hover {
             background: linear-gradient(90deg, #ff1493, #c71585);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 0 #c71585, 0 8px 20px rgba(255,20,147,0.45);
+            transform: translateY(-4px) scale(1.04) rotate(-2deg);
+            box-shadow: 0 15px 0 #c71585, 0 10px 25px rgba(255, 20, 147, 0.5);
         }
-        button:active { transform: translateY(4px); box-shadow: 0 4px 0 #c71585; }
-        .footer { margin-top: 2rem; color: #db7093; font-size: clamp(0.9rem, 3.5vw, 1rem); display: flex; align-items: center; justify-content: center; gap: 0.4rem; opacity: 0.9; }
+        button:active { transform: translateY(5px) rotate(1deg) scale(0.95); box-shadow: 0 5px 0 #c71585; }
+        .footer { 
+            margin-top: 1.5rem;
+            margin-top: clamp(1rem, 3vw, 2.5rem); 
+            color: #db7093; 
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 0.3rem;
+            gap: clamp(0.2rem, 1.5vw, 0.5rem); 
+            opacity: 0.9; 
+            flex-wrap: wrap;
+            line-height: 1.3;
+        }
         .heart-bullet { animation: pulse 1.8s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
-
-        /* Mobile-first media queries */
-        @media (min-width: 480px) {
-            .card { max-width: 520px; padding: 2.5rem 2rem; border-radius: 2rem; }
-            .message-box { min-height: 140px; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            position: absolute;
+            animation: confetti-fall 3s linear;
+            z-index: 1000;
         }
-        @media (min-width: 768px) {
-            .card { max-width: 560px; padding: 3rem 2.5rem; }
-            .buttons { flex-wrap: nowrap; }
-            .name-section { flex-direction: row; justify-content: center; gap: 1rem; }
-            input[type="text"] { width: 280px; }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        .emoji-reaction {
+            position: absolute;
+            font-size: 2rem;
+            animation: emoji-pop 1s ease-out;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        @keyframes emoji-pop {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.5) rotate(180deg); }
+            100% { transform: scale(0) rotate(360deg) translateY(-50px); opacity: 0; }
+        }
+        
+        .love-meter {
+            background: linear-gradient(90deg, #ff69b4, #ff1493, #c71585);
+            height: 8px;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .love-meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff69b4);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            75% { transform: translateX(5px) rotate(2deg); }
+        }
+        
+        .bounce {
+            animation: bounce 0.6s;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
+            75% { transform: translateY(-15px); }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(199, 21, 133, 0.18);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 2000;
+        }
+        .modal-overlay[hidden] { display: none; }
+        .modal {
+            width: min(92vw, 420px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid rgba(255, 105, 180, 0.55);
+            border-radius: clamp(1rem, 4vw, 1.8rem);
+            box-shadow: 0 25px 50px rgba(219, 112, 147, 0.28), 0 10px 20px rgba(0,0,0,0.08);
+            padding: 1.4rem 1.2rem;
+            text-align: center;
+        }
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            color: #c71585;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 0.35rem;
+        }
+        .modal-sub {
+            color: #a52a2a;
+            opacity: 0.9;
+            font-size: clamp(1rem, 3.5vw, 1.1rem);
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+        .modal-actions {
+            display: grid;
+            gap: 0.7rem;
+            margin-top: 0.6rem;
+        }
+        .secondary-btn {
+            background: linear-gradient(90deg, #ffd1dc, #ffe6f2);
+            color: #c71585;
+            box-shadow: 0 8px 0 rgba(199, 21, 133, 0.35), 0 4px 15px rgba(199, 21, 133, 0.15);
+        }
+        .secondary-btn:hover {
+            background: linear-gradient(90deg, #ffe6f2, #ffd1dc);
         }
     </style>
 </head>
@@ -146,19 +365,47 @@
 
     <div class="card">
         <h1><span>💞</span> Personalized Valentine <span>💞</span></h1>
-        <div class="sub">Enter a name to make it extra special 💌</div>
+        <div class="sub">Enter a name to make the messages extra special 💌</div>
 
         <div class="name-section" id="nameSection">
-            <input type="text" id="nameInput" placeholder="Enter name (e.g., My love)" aria-label="Enter name for personalization">
-            <button id="saveNameBtn">Save & Start</button>
+            <input type="text" id="nameInput" placeholder="Enter their name (e.g., My love)" aria-label="Enter name for personalization">
+            <button id="saveNameBtn">Save Name & Start</button>
+        </div>
+
+        <div class="category-section" id="categorySection">
+            <div class="category-label">Pick a vibe 💫</div>
+            <select id="categorySelect" aria-label="Pick message category">
+                <option value="all">All</option>
+                <option value="cute">Cute</option>
+                <option value="funny">Funny</option>
+                <option value="poetic">Poetic</option>
+                <option value="spicy">Spicy</option>
+            </select>
+        </div>
+
+        <div class="modal-overlay" id="chooseNameOverlay" hidden>
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="chooseNameTitle">
+                <div class="modal-title" id="chooseNameTitle">Choose a name 💝</div>
+                <div class="modal-sub" id="chooseNameText"></div>
+                <div class="modal-actions">
+                    <button id="useSavedNameBtn" type="button">Use saved name</button>
+                    <button id="enterNewNameBtn" type="button" class="secondary-btn">Enter a new name</button>
+                </div>
+            </div>
         </div>
 
         <div class="message-box" id="messageDisplay">
             💖 Your personalized message awaits...
         </div>
+        
+        <div class="love-meter">
+            <div class="love-meter-fill" id="loveMeterFill" style="width: 0%"></div>
+        </div>
+        
+        <div class="emoji-reactions" id="emojiReactions"></div>
 
         <div class="buttons">
-            <button id="generateBtn" aria-label="Generate new message"><span>❤️</span> Generate Love <span>❤️</span></button>
+            <button id="generateBtn" aria-label="Generate a new love message"><span>❤️</span> Generate Love <span>❤️</span></button>
             <button id="shareBtn" aria-label="Share this message"><span>🔗</span> Share Love <span>💕</span></button>
             <button id="changeNameBtn" style="display:none;">Change Name</button>
         </div>
@@ -169,176 +416,391 @@
     </div>
 
     <script>
-        (function() {
-            const messages = [
-                "you make my heart skip a beat! 💓",
-                "I'm so sweet on you, it's unhealthy! 🍫",
-                "You're the peanut butter to my jelly. 🥜",
-                "If kisses were snowflakes, I'd send you a blizzard. ❄️💋",
-                "You're the reason I believe in love at first sight. 👀❤️",
-                "I love you more than pizza... and that's serious! 🍕",
-                "You're the candy to my heart. 🍬",
-                "Every love story is beautiful, but ours is my favorite. 📖💕",
-                "You're the missing piece I never knew I needed. 🧩",
-                "I'd pick you even in a lineup of a million faces. 🫵🌟",
-                "You've stolen a piece of my heart, and I don't want it back. 💔➡️❤️",
-                "Being with you feels like a permanent Valentine's Day. 🌹",
-                "You're the marshmallow to my hot chocolate. ☕",
-                "If I had a flower for every time I thought of you, I'd walk in an eternal garden. 🌸",
-                "You're the apple of my eye (and the cinnamon to my roll). 🍎🥐",
-                "You're my favorite notification in a world full of noise 💌",
-                "If loving you was a crime, I'd happily do life without parole ❤️",
-                "You turn my ordinary moments into the best love story ever told 📖💞",
-                "My heart has your name written in permanent marker 🖤➡️❤️",
-                "You're the kind of magic I didn't know existed until you smiled ✨",
-                "Every sunrise feels like a love letter addressed to us 🌅💕",
-                "You're the 'why' behind all my butterflies 🦋",
-                "I love you in every language, even the ones I haven't learned yet 🌍❤️",
-                "You're my comfort playlist on repeat 🎶💖",
-                "If I could bottle how you make me feel, it'd be the best perfume ever made 🫙✨",
-                "You're proof that the best things in life come with zero warning signs 😏❤️",
-                "My favorite place is anywhere you're holding my hand 🤝💞",
-                "You make falling in love feel like the easiest thing I've ever done 🪂",
-                "You're the plot twist that made my whole story better 📚💘",
-                "I didn't know hearts could glow until you walked into my life 🌟",
-                "You're my safe word, my wild side, and everything in between 🔥❤️",
-                "Loving you is my favorite bad habit (and I never want to quit) 😈💕",
-                "You're the reason 'forever' doesn't scare me anymore 🕊️",
-                "If kisses were stars, you'd have your own galaxy by now 🌌💋",
-                "You're still the first person I want to text good morning and good night every single day ☀️🌙"
-            ];
+            (function() {
+                const messages = [
+                    "you make my heart skip a beat! 💓",
+                    "I'm so sweet on you, it's unhealthy! 🍫",
+                    "You're peanut butter to my jelly. 🥜",
+                    "If kisses were snowflakes, I'd send you a blizzard. ❄️💋",
+                    "You're reason I believe in love at first sight. 👀❤️",
+                    "I love you more than pizza... and that's serious! 🍕",
+                    "You're candy to my heart. 🍬",
+                    "Every love story is beautiful, but ours is my favorite. 📖💕",
+                    "You're missing piece I never knew I needed. 🧩",
+                    "I'd pick you even in a lineup of a million faces. 🫵🌟",
+                    "You've stolen a piece of my heart, and I don't want it back. 💔➡️❤️",
+                    "Being with you feels like a permanent Valentine's Day. 🌹",
+                    "You're marshmallow to my hot chocolate. ☕",
+                    "If I had a flower for every time I thought of you, I'd walk in an eternal garden. 🌸",
+                    "You're apple of my eye (and cinnamon to my roll). 🍎🥐",
+                    "You're my favorite notification in a world full of noise 💌",
+                    "If loving you was a crime, I'd happily do life without parole ❤️",
+                    "You turn my ordinary moments into the best love story ever told 📖",
+                    "My heart has your name written in permanent marker 🖤➡️❤️",
+                    "You're the kind of magic I didn't know existed until you smiled ✨",
+                    "Every sunrise feels like a love letter addressed to us 🌅💕",
+                    "You're the 'why' behind all my butterflies 🦋",
+                    "I love you in every language, even the ones I haven't learned yet 🌍❤️",
+                    "You're my comfort playlist on repeat 🎶💖",
+                    "If I could bottle how you make me feel, it'd be the best perfume ever made 🫙✨",
+                    "You're proof that the best things in life come with zero warning signs 😏❤️",
+                    "My favorite place is anywhere you're holding my hand 🤝💞",
+                    "You make falling in love feel like the easiest thing I've ever done 🪂",
+                    "You're the plot twist that made my whole story better 📚💘",
+                    "I didn't know hearts could glow until you walked into my life 🌟",
+                    "You're my safe word, my wild side, and everything in between 🔥❤️",
+                    "Loving you is my favorite bad habit (and I never want to quit) 😈💕",
+                    "You're the reason 'forever' doesn't scare me anymore 🕊️",
+                    "If kisses were stars, you'd have your own galaxy by now 🌌💋",
+                    "You're still the first person I want to text good morning and good night every single day ☀️🌙",
+                    "You're the sweetest part of my day 🍯❤️",
+                    "I like you a latte ☕💖",
+                    "You + me = my favorite kind of math 💞",
+                    "You make my heart smile 😊💘",
+                    "If love had a playlist, you'd be my #1 track 🎶❤️",
+                    "You're my favorite hello and my hardest goodbye 👋💗",
+                    "With you, even silence feels romantic 🌙💞",
+                    "Your love feels like home 🏡💖",
+                    "You make ordinary moments feel magical ✨💕",
+                    "If kisses were currency, we'd be millionaires 💋💰",
+                    "I want you close—now and always 🔥❤️",
+                    "Come here—my arms miss you 🤗💘"
+                ];
 
-            const messageDisplay = document.getElementById('messageDisplay');
-            const generateBtn = document.getElementById('generateBtn');
-            const shareBtn = document.getElementById('shareBtn');
-            const changeNameBtn = document.getElementById('changeNameBtn');
-            const nameSection = document.getElementById('nameSection');
-            const nameInput = document.getElementById('nameInput');
-            const saveNameBtn = document.getElementById('saveNameBtn');
-            const heartsContainer = document.getElementById('heartsContainer');
+                const messageDisplay = document.getElementById('messageDisplay');
+                const generateBtn = document.getElementById('generateBtn');
+                const shareBtn = document.getElementById('shareBtn');
+                const changeNameBtn = document.getElementById('changeNameBtn');
+                const nameSection = document.getElementById('nameSection');
+                const nameInput = document.getElementById('nameInput');
+                const saveNameBtn = document.getElementById('saveNameBtn');
+                const heartsContainer = document.getElementById('heartsContainer');
+                const loveMeterFill = document.getElementById('loveMeterFill');
+                const chooseNameOverlay = document.getElementById('chooseNameOverlay');
+                const chooseNameText = document.getElementById('chooseNameText');
+                const useSavedNameBtn = document.getElementById('useSavedNameBtn');
+                const enterNewNameBtn = document.getElementById('enterNewNameBtn');
+                const categorySelect = document.getElementById('categorySelect');
 
-            let currentMessage = "";
-            let userName = localStorage.getItem('valentineName') || "";
+                let currentMessage = "";
+                let userName = localStorage.getItem('valentineName') || "";
+                let currentCategory = localStorage.getItem('valentineCategory') || 'all';
+                const recentMessages = [];
+                const RECENT_LIMIT = 8;
 
-            function getRandomMessage() {
-                const base = messages[Math.floor(Math.random() * messages.length)];
-                if (userName.trim()) {
-                    const prefixes = [
-                        `Hey ${userName}, `,
-                        `My dearest ${userName}, `,
-                        `Darling ${userName}, `,
-                        `To my love ${userName}, `,
-                        `${userName}, you `
-                    ];
-                    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-                    return prefix + base.charAt(0).toLowerCase() + base.slice(1);
-                }
-                return base;
-            }
-
-            function typeWriter(text, element, speed = 40) {
-                element.innerHTML = '';
-                let i = 0;
-                const cursor = '<span class="typing-cursor">|</span>';
-                function type() {
-                    if (i < text.length) {
-                        element.innerHTML = text.substring(0, i + 1) + cursor;
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        element.innerHTML = text;
-                        createHeartBurst();
-                    }
-                }
-                type();
-            }
-
-            function displayNewMessage() {
-                messageDisplay.style.opacity = '0';
-                messageDisplay.style.transform = 'scale(0.97)';
-                setTimeout(() => {
-                    messageDisplay.style.transform = 'scale(1)';
-                    messageDisplay.style.opacity = '1';
-                    currentMessage = getRandomMessage();
-                    typeWriter(currentMessage, messageDisplay);
-                }, 400);
-            }
-
-            function saveName() {
-                userName = nameInput.value.trim();
-                if (userName) {
-                    localStorage.setItem('valentineName', userName);
-                    nameSection.style.display = 'none';
-                    changeNameBtn.style.display = 'inline-flex';
-                    displayNewMessage();
-                } else {
-                    alert("Enter a name to personalize the love notes 💕");
-                }
-            }
-
-            async function shareMessage() {
-                const shareData = {
-                    title: "Sweet Personalized Valentine Message 💖",
-                    text: `${currentMessage}\n\nSending you love from Lusaka! 💕`,
-                    url: window.location.href
+                const messagePools = {
+                    all: messages,
+                    cute: [
+                        "you make my heart skip a beat! 💓",
+                        "You're peanut butter to my jelly. 🥜",
+                        "You're candy to my heart. 🍬",
+                        "You're marshmallow to my hot chocolate. ☕",
+                        "You're apple of my eye (and cinnamon to my roll). 🍎🥐",
+                        "My favorite place is anywhere you're holding my hand 🤝💞",
+                        "You're still the first person I want to text good morning and good night every single day ☀️🌙",
+                        "You're the sweetest part of my day 🍯❤️",
+                        "I like you a latte ☕💖",
+                        "You + me = my favorite kind of math 💞",
+                        "You make my heart smile 😊💘",
+                        "If love had a playlist, you'd be my #1 track 🎶❤️",
+                        "Your love feels like home 🏡💖"
+                    ],
+                    funny: [
+                        "I love you more than pizza... and that's serious! 🍕",
+                        "If loving you was a crime, I'd happily do life without parole ❤️",
+                        "You're my favorite notification in a world full of noise 💌",
+                        "I'd pick you even in a lineup of a million faces. 🫵🌟",
+                        "If kisses were stars, you'd have your own galaxy by now 🌌💋",
+                        "I like you a latte ☕💖",
+                        "You + me = my favorite kind of math 💞",
+                        "You're my favorite hello and my hardest goodbye 👋💗",
+                        "If kisses were currency, we'd be millionaires 💋💰"
+                    ],
+                    poetic: [
+                        "Every love story is beautiful, but ours is my favorite. 📖💕",
+                        "You're missing piece I never knew I needed. 🧩",
+                        "Every sunrise feels like a love letter addressed to us 🌅💕",
+                        "I love you in every language, even the ones I haven't learned yet 🌍❤️",
+                        "You turn my ordinary moments into the best love story ever told 📖",
+                        "You're the plot twist that made my whole story better 📚💘",
+                        "You're the kind of magic I didn't know existed until you smiled ✨",
+                        "With you, even silence feels romantic 🌙💞",
+                        "You make ordinary moments feel magical ✨💕",
+                        "Your love feels like home 🏡💖"
+                    ],
+                    spicy: [
+                        "You're my safe word, my wild side, and everything in between 🔥❤️",
+                        "Loving you is my favorite bad habit (and I never want to quit) 😈💕",
+                        "You've stolen a piece of my heart, and I don't want it back. 💔➡️❤️",
+                        "I want you close—now and always 🔥❤️",
+                        "Come here—my arms miss you 🤗💘"
+                    ]
                 };
-                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-                    try { await navigator.share(shareData); } catch (err) {
-                        if (err.name !== 'AbortError') fallbackShare();
+
+                function pickFromPool(pool) {
+                    if (!pool || pool.length === 0) return messages[Math.floor(Math.random() * messages.length)];
+                    const attempts = Math.min(12, pool.length * 2);
+                    for (let k = 0; k < attempts; k++) {
+                        const candidate = pool[Math.floor(Math.random() * pool.length)];
+                        if (!recentMessages.includes(candidate)) return candidate;
                     }
-                } else {
-                    fallbackShare();
+                    return pool[Math.floor(Math.random() * pool.length)];
                 }
-            }
 
-            function fallbackShare() {
-                const text = `${currentMessage}\n\nLove from Lusaka! 💕 ${window.location.href}`;
-                navigator.clipboard.writeText(text).then(() => {
-                    alert("Copied to clipboard! Share the love 💌");
-                }).catch(() => {
-                    alert("Couldn't copy — here's the text:\n\n" + text);
-                });
-            }
+                function getRandomMessage() {
+                    const pool = messagePools[currentCategory] || messages;
+                    const base = pickFromPool(pool);
+                    if (userName.trim()) {
+                        const prefixes = [
+                            `Hey ${userName}, `,
+                            `My dearest ${userName}, `,
+                            `Darling ${userName}, `,
+                            `To my love ${userName}, `,
+                            `${userName}, you `
+                        ];
+                        const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                        const msg = prefix + base.charAt(0).toLowerCase() + base.slice(1);
+                        recentMessages.unshift(base);
+                        if (recentMessages.length > RECENT_LIMIT) recentMessages.pop();
+                        return msg;
+                    }
+                    recentMessages.unshift(base);
+                    if (recentMessages.length > RECENT_LIMIT) recentMessages.pop();
+                    return base;
+                }
 
-            function createHeart() {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.textContent = ['❤️','💖','💕','💞','💘'][Math.floor(Math.random()*5)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (8 + Math.random() * 10) + 's';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                heartsContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 15000);
-            }
+                function typeWriter(text, element, speed = 40) {
+                    element.innerHTML = '';
+                    let i = 0;
+                    const cursor = '<span class="typing-cursor">|</span>';
+                    function type() {
+                        if (i < text.length) {
+                            element.innerHTML = text.substring(0, i + 1) + cursor;
+                            i++;
+                            setTimeout(type, speed);
+                        } else {
+                            element.innerHTML = text;
+                            createHeartBurst();
+                        }
+                    }
+                    type();
+                }
 
-            function createHeartBurst() {
-                for (let i = 0; i < 8; i++) setTimeout(createHeart, i * 80);
-            }
+                function displayNewMessage() {
+                    messageDisplay.style.opacity = '0';
+                    messageDisplay.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        messageDisplay.style.transform = 'scale(1)';
+                        messageDisplay.style.opacity = '1';
+                        currentMessage = getRandomMessage();
+                        typeWriter(currentMessage, messageDisplay);
+                        createConfetti();
+                        updateLoveMeter();
+                        playSound('success');
+                    }, 400);
+                }
 
-            // Init
-            setInterval(createHeart, 1800);
-            window.addEventListener('load', () => {
-                if (userName) {
+                function saveName() {
+                    userName = nameInput.value.trim();
+                    if (userName) {
+                        localStorage.setItem('valentineName', userName);
+                        nameSection.style.display = 'none';
+                        changeNameBtn.style.display = 'inline-flex';
+                        displayNewMessage();
+                        nameInput.classList.add('shake');
+                        setTimeout(() => nameInput.classList.remove('shake'), 500);
+                    } else {
+                        alert("Please enter a name to make it personal 💕");
+                        nameInput.classList.add('shake');
+                        setTimeout(() => nameInput.classList.remove('shake'), 500);
+                    }
+                }
+
+                async function shareMessage() {
+                    const shareData = {
+                        title: "Sweet Personalized Valentine Message 💖",
+                        text: `${currentMessage}\n\nSending you this little burst of love from Lusaka! 💕 Made with ❤️`,
+                        url: window.location.href
+                    };
+                    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                        try { await navigator.share(shareData); } catch (err) {
+                            if (err.name !== 'AbortError') fallbackShare();
+                        }
+                    } else {
+                        fallbackShare();
+                    }
+                }
+
+                function fallbackShare() {
+                    const fallbackText = `${currentMessage}\n\nSending you love! 💕 Check out more at: ${window.location.href}`;
+                    navigator.clipboard.writeText(fallbackText)
+                        .then(() => alert("Message copied to clipboard! Paste it anywhere to share the love 💌"))
+                        .catch(() => alert("Couldn't copy automatically. Here's your message:\n\n" + fallbackText));
+                }
+
+                function createHeart() {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = ['❤️', '💖', '💕', '💞', '💘'][Math.floor(Math.random() * 5)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (8 + Math.random() * 10) + 's';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    heartsContainer.appendChild(heart);
+                    setTimeout(() => heart.remove(), 15000);
+                }
+
+                function createHeartBurst() {
+                    for (let i = 0; i < 8; i++) setTimeout(createHeart, i * 80);
+                }
+                
+                function createConfetti() {
+                    const colors = ['#ff69b4', '#ff1493', '#c71585', '#ffd700', '#ff6b6b', '#4ecdc4'];
+                    for (let i = 0; i < 30; i++) {
+                        setTimeout(() => {
+                            const confetti = document.createElement('div');
+                            confetti.className = 'confetti';
+                            confetti.style.left = Math.random() * 100 + 'vw';
+                            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                            document.body.appendChild(confetti);
+                            setTimeout(() => confetti.remove(), 3000);
+                        }, i * 50);
+                    }
+                }
+                
+                function createEmojiReaction(x, y) {
+                    const emojis = ['😍', '🥰', '😘', '💕', '💖', '💗', '💝', '✨', '🌟', '💫'];
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-reaction';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = x + 'px';
+                    emoji.style.top = y + 'px';
+                    document.body.appendChild(emoji);
+                    setTimeout(() => emoji.remove(), 1000);
+                }
+                
+                function updateLoveMeter() {
+                    const loveLevel = Math.floor(Math.random() * 30) + 70;
+                    loveMeterFill.style.width = loveLevel + '%';
+                    loveMeterFill.style.background = loveLevel > 90 ? 
+                        'linear-gradient(90deg, #ff1493, #ff69b4, #ffd700)' : 
+                        'linear-gradient(90deg, #ffd700, #ff69b4)';
+                }
+                
+                function playSound(type) {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    if (type === 'click') {
+                        oscillator.frequency.value = 800;
+                        gainNode.gain.value = 0.1;
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.1);
+                    } else if (type === 'success') {
+                        oscillator.frequency.value = 600;
+                        gainNode.gain.value = 0.15;
+                        oscillator.start();
+                        oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.2);
+                        oscillator.stop(audioContext.currentTime + 0.3);
+                    }
+                }
+                
+                function addClickEffects(element) {
+                    element.addEventListener('click', (e) => {
+                        element.classList.add('bounce');
+                        setTimeout(() => element.classList.remove('bounce'), 600);
+                        createEmojiReaction(e.clientX, e.clientY);
+                        playSound('click');
+                    });
+                }
+
+                function openChooseNameModal() {
+                    nameSection.style.display = 'none';
+                    changeNameBtn.style.display = 'none';
+                    chooseNameText.textContent = `Saved name: ${userName}`;
+                    chooseNameOverlay.hidden = false;
+                    useSavedNameBtn.focus();
+                }
+
+                function closeChooseNameModal() {
+                    chooseNameOverlay.hidden = true;
+                }
+
+                function proceedWithSavedName() {
+                    closeChooseNameModal();
                     nameSection.style.display = 'none';
                     changeNameBtn.style.display = 'inline-flex';
+                    categorySelect.value = currentCategory;
                     currentMessage = getRandomMessage();
                     typeWriter(currentMessage, messageDisplay, 50);
-                } else {
-                    nameSection.style.display = 'flex';
-                    messageDisplay.textContent = "Enter a name above to begin! 💕";
+                    updateLoveMeter();
                 }
-                for (let i = 0; i < 10; i++) createHeart(); // fewer on load for perf
-            });
 
-            saveNameBtn.addEventListener('click', saveName);
-            generateBtn.addEventListener('click', displayNewMessage);
-            shareBtn.addEventListener('click', shareMessage);
-            changeNameBtn.addEventListener('click', () => {
-                nameSection.style.display = 'flex';
-                nameInput.value = userName;
-                changeNameBtn.style.display = 'none';
-            });
-        })();
+                function proceedWithNewName() {
+                    closeChooseNameModal();
+                    nameSection.style.display = 'flex';
+                    changeNameBtn.style.display = 'none';
+                    nameInput.value = '';
+                    categorySelect.value = currentCategory;
+                    messageDisplay.textContent = "Enter a new name above to get started! 💕";
+                    nameInput.focus();
+                }
+
+                setInterval(createHeart, 1800);
+                window.addEventListener('load', () => {
+                    if (userName) {
+                        openChooseNameModal();
+                    } else {
+                        nameSection.style.display = 'flex';
+                        changeNameBtn.style.display = 'none';
+                        categorySelect.value = currentCategory;
+                        messageDisplay.textContent = "Enter a name above to get started! 💕";
+                    }
+                    for (let i = 0; i < 12; i++) createHeart();
+                    
+                    addClickEffects(generateBtn);
+                    addClickEffects(shareBtn);
+                    addClickEffects(saveNameBtn);
+                    addClickEffects(changeNameBtn);
+                    
+                    messageDisplay.addEventListener('mouseenter', () => {
+                        messageDisplay.classList.add('bounce');
+                        setTimeout(() => messageDisplay.classList.remove('bounce'), 600);
+                    });
+                    
+                    document.addEventListener('click', (e) => {
+                        if (Math.random() > 0.7) {
+                            createEmojiReaction(e.clientX, e.clientY);
+                        }
+                    });
+                });
+
+                saveNameBtn.addEventListener('click', saveName);
+                generateBtn.addEventListener('click', displayNewMessage);
+                shareBtn.addEventListener('click', shareMessage);
+                categorySelect.addEventListener('change', () => {
+                    currentCategory = categorySelect.value;
+                    localStorage.setItem('valentineCategory', currentCategory);
+                    if (currentMessage) displayNewMessage();
+                });
+                useSavedNameBtn.addEventListener('click', proceedWithSavedName);
+                enterNewNameBtn.addEventListener('click', proceedWithNewName);
+                chooseNameOverlay.addEventListener('click', (e) => {
+                    if (e.target === chooseNameOverlay) proceedWithNewName();
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (!chooseNameOverlay.hidden && e.key === 'Escape') proceedWithNewName();
+                });
+                changeNameBtn.addEventListener('click', () => {
+                    nameSection.style.display = 'flex';
+                    nameInput.value = userName;
+                    changeNameBtn.style.display = 'none';
+                });
+            })();
     </script>
 </body>
 </html>
